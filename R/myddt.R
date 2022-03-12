@@ -13,7 +13,7 @@
 #' @examples
 myddt <- function(df, x, y, cond, species, col){
 
-  df1 <- df %>% {{filter(grepl(species,ddt$SPECIES))}} # Note the use of {{}}
+  df1 <- df %>% filter(grepl(species,ddt$SPECIES)) # Note the use of {{}}
 
   result = paste("\\Users\\user\\Desktop\\Projects\\Project 1", species, sep = "")
   write.csv(df1, result, row.names=FALSE)
