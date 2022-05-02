@@ -1,0 +1,79 @@
+---
+title: "What the package does"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{What the package does}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(MATH4753Karamitis)
+```
+
+# Introduction
+
+This package contains four working R functions and two data sets. This document will show and example of their use and have some commentary about each. 
+
+Many of the functions can be used on their own, but a few of them do contain a function call of another function which may not be included in the package.
+
+## The first function: myboot2()
+
+```{r}
+MATH4753Karamitis::myboot2(iter=1000, x=20000, fun="mean", alpha=0.005, cx=1.0)
+```
+
+This function creates a bootstrap histogram of x vs y where x is some statistic and y is density. The defining variables are: iter - number of iterations, x - some value which defines the largest value on the x-axis, fun - the function being done (such as mean or median), alpha - which determines confidence, and cx - size of the text which appears on the table. 
+
+## The second function: mycltu()
+
+```{r}
+MATH4753Karamitis::mycltu(n=30,iter=10000, a=0, b=20)
+```
+This function creates a graph using the central limit theorem. The function includes 4 main definers, n which is the sample size, iter which is the number of iterations, a and b, which are the the variables used to help calculate the mean, standard deviation, and curve. 
+
+## The third function: myddt()
+Something happened with this function, and while it is in the package, it is not fully working. Until further notice, this function is out of order.
+
+This function is supposed to use the ddt data set which is discussed below.
+
+## The fourth function: mymaxlik()
+
+```{r}
+input = c(2, 2, 2, 3, 4, 5, 6, 6, 6, 7)
+logbin=function(x,param) log(dbinom(x,prob=param,size=20))
+output2 <- MATH4753Karamitis::mymaxlik(x=input, param=seq(0,1,length=1000), lfun=logbin,main="Binomial, n=20", cex.main=1)
+```
+This function takes an input that is less than the number of the sample size. It needs an extra function, one which is not included in the r-packages, but is included for this example as reference, logbin() which determines the parameters of the logarithmic function that is graphed by the maximum likelihood function. This function returns where the maximum value occurs. 
+
+## The fifth function: scatterhist()
+
+```{r}
+scatterhist <- MATH4753Karamitis::scatterhist(x=fire$DISTANCE, y=fire$DAMAGE, xlab="Distance", ylab="Damage")
+```
+This shows the scatter histogram using the fire data set, which is discussed below. The scatterhist function takes and x and y, and then graphs them on a scatterplot with barplots on the top and right side of the scatterplot.
+
+This function can use data.
+
+## The first data set: ddt
+
+```{r}
+head(ddt)
+```
+The data set DDT which is stored within this project and can be used with the function packages.
+
+## The second data set: fire
+
+```{r}
+head(fire)
+```
+
+The data set FIRE which is stored within this project and can be used with some of the function packages if desired.
+
